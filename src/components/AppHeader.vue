@@ -3,7 +3,7 @@
         <div id="header" class="clearfix">
             
             <router-link to="/">
-                <img id="logo" src="@/assets/image/conan.png" alt="conan">
+                <img id="logo" src="@/assets/image/conan.png" alt="conan" width="150" />
             </router-link>
             
         </div>

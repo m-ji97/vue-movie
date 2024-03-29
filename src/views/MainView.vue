@@ -2,16 +2,15 @@
     <div>
         <AppHeader />
             <div>
-               <table>
+               <table class="mc">
                     <tr>
-                        <td>티켓</td>
-                        <br>
-                        <td>매점</td>
-                        <br>
-                        <td>조회</td>
+                        <td class="main_bt">티켓</td>
+                        <td width="10"></td>
+                        <td class="main_bt">매점</td>
+                        <td width="10"></td>
+                        <td class="main_bt">조회</td>
                     </tr>
                </table> 
-                <br><br><br><br><br><br><br><br><br>
             </div>
         <AppFooter />
     </div>

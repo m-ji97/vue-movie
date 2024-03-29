@@ -1,33 +1,42 @@
+* {
+    margin:0; padding: 0;
+}
 #logo {
-    size: 50px;
-    padding: 50px 30px;
+    padding: 45px 0 0 0;
     display: inline-block;
+    margin-left:46%;
 }
 
 #header{
     background-color: #bfbfbf;
-    background-image: url("@/assets/image/chair.jpg");
+    background-image: url("@/assets/image/movie_bg.png");
     background-size: 550px;
     height: 150px;
     padding: 10px;
     
 }
+.m20 {
+    margin-left:20px;
+}
+.mc {
+    margin:0 auto;
+    margin-top:160px;
+    margin-bottom:160px;
+}
 
+.main_bt {
+    border:solid 2px #E6E6E6;
+    border-radius: 25px;
+    background:#fafafa;
+    padding: 80px;
+    font-size: 50px;
+    text-align: center;
+    
+    height: 50px;
+}
 #footer{
     text-align: center;
     padding: 80px;
     background-color: #bfbfbf;
     font-size: 20px;
-}
-
-td{
-    font-size: 50px;
-    text-align: center;
-    width: 150px;
-    height: 50px;
-    padding: 80px;
-
-    
-
-
 }
