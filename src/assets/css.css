@@ -1,12 +1,14 @@
 #logo {
-    background-color: #bfbfbf;
-    padding: 28px 15px;
+    size: 50px;
+    padding: 50px 30px;
     display: inline-block;
 }
 
 #header{
     background-color: #bfbfbf;
-    height: 100px;
+    background-image: url("@/assets/image/chair.jpg");
+    background-size: 550px;
+    height: 150px;
     padding: 10px;
     
 }
