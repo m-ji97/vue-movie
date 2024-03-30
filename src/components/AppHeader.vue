@@ -3,7 +3,7 @@
         <div id="header" class="clearfix">
             
             <router-link to="/">
-                <img id="logo" src="@/assets/image/conan.png" alt="conan" width="150" />
+                <img id="logo" src="@/assets/img/conan.png" alt="conan" width="150" />
             </router-link>
             
         </div>
@@ -24,4 +24,3 @@ export default {
     created() { }
 };
 </script>
-
