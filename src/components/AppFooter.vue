@@ -6,7 +6,9 @@
         <!-- //footer -->
     </div>
 </template>
+
 <script>
+import '@/assets/css/AppFooter.css'
 export default {
     name: "AppFooter",
     components: {},
@@ -14,6 +16,8 @@ export default {
         return {};
     },
     methods: {},
-    created() { }
+    created() {
+        
+    }
 };
 </script>

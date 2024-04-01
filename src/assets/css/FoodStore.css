@@ -1,0 +1,91 @@
+#foodmenu p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#foodmenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#foodmenu .view {
+    width: calc(33.33% - 8px);
+    height: 220px;
+    margin: 5px 0px 0px 3px;
+    float: left;
+}
+
+#foodmenu .img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+#foodmenu .imgWriter {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#cart {
+    display: inline-block;
+    border: 3px solid #ff4d4d;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 700px;
+}
+
+#cart div:last-child {
+    margin-top: auto;
+}
+
+
+.pay {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.pay:hover {
+    background-color: #ff3333;
+}
+
+
+/* 이미지 전체영역 */
+#foodmenu #viewArea {
+	margin: 10px 0px 10px 0px;
+}
+
+/* 이미지 1개영역 */
+#foodmenu .view{
+	width: 200px;
+	height: 220px;
+	margin: 5px 0px 0px 3px;
+	border: 1px solid #A6A6A6;
+	float: left;
+}
+
+#return-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #e70c0c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #return-button:hover {
+    background-color: #0056b3;
+  }

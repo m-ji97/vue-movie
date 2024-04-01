@@ -3,15 +3,20 @@
         <div id="header" class="clearfix">
             
             <router-link to="/">
-                <img id="logo" src="@/assets/img/conan.png" alt="conan" width="150" />
+                <img id="logo" src="@/assets/img/conan.png" alt="conan" width="150px" />
             </router-link>
             
         </div>
         <!-- //header -->
+        <nav id="nav">
+            <router-link to="/">
+                <img id="home" src="@/assets/img/home_bt.png" alt="home" width="50px" />
+            </router-link>
+        </nav>
     </div> 
 </template>
 <script>
-import '@/assets/css.css'
+import '@/assets/css/AppHeader.css'
 
 export default {
     name: "AppHeader",
