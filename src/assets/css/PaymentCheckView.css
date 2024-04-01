@@ -29,9 +29,12 @@ h1 {
 .payment-method {
     text-align: center;
     padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 4px solid #ff4d4d;
+    background-color: white;
+    border-radius: 25px;
     cursor: pointer;
+    margin-left: 10px ;
+    font-weight:bold;
 }
 input[type="submit"] {
     display: none;
@@ -39,4 +42,20 @@ input[type="submit"] {
 .total-price {
     margin-top: 20px;
     font-weight: bold;
+}
+#card{
+    width: 100px;
+    padding: 15px;
+    display: block;
+}
+#cash{
+    width: 100px;
+    padding: 17px;
+    display: block;
+}
+#point{
+    width: 100px;
+    padding: 10px;
+    display: block;
+    
 }

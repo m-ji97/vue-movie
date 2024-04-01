@@ -11,20 +11,42 @@
           <div id="index">
             <div id="greetings" style="width: 800px;">
 
+              <div class="container">
+                <!--왼쪽으로 -100%까지 이동-->
+                <ul class="boxes">
+                  <li class="red">red</li>
+                  <li class="orange">orange</li>
+                  <li class="yellow">yellow</li>
+                  <li class="green">green</li>
+                  <li class="blue">blue</li>
+                  <li class="navy">navy</li>
+                  <li class="violet">violet</li>
+                </ul>
+                <!--왼쪽으로 100%에서 0%까지 이동-->
+                <ul class="boxes list2">
+                  <li class="red">red</li>
+                  <li class="orange">orange</li>
+                  <li class="yellow">yellow</li>
+                  <li class="green">green</li>
+                  <li class="blue">blue</li>
+                  <li class="navy">navy</li>
+                  <li class="violet">violet</li>
+                </ul>
+              </div>
 
               <div id="mPage-btn">
                 <div id="btn_main">
-                  <router-link to="/ticket/ticketform"><img id="ticket" src="@/assets/img/ticket.png">
-                    <p><strong>영화예매</strong></p>
-                  </router-link>
+                  <router-link to="/ticket/ticketform">
+                    <img id="popcorn" src="@/assets/img/ticket.png">
+                    <p font-weight=bold>영화예매</p></router-link>
                 </div>
                 <div id="btn_main">
                   <router-link to="/foodstore/foodform"><img id="popcorn" src="@/assets/img/popcorn.png">
-                    <p><strong>매점구매</strong></p></router-link>
+                    <p font-weight=bold>매점구매</p></router-link>
                 </div>
                 <div id="btn_main">
                   <router-link to="/find/findform"><img id="receipt" src="@/assets/img/receipt.png">
-                    <p><strong>예약조회</strong></p></router-link>
+                    <p font-weight=bold>예약조회</p></router-link>
                 </div>
               </div>
 

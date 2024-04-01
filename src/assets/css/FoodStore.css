@@ -60,6 +60,10 @@
     background-color: #ff3333;
 }
 
+#pay-btn a{
+    color: #ffffff;
+}
+
 
 /* 이미지 전체영역 */
 #foodmenu #viewArea {
