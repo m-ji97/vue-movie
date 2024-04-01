@@ -14,23 +14,11 @@
               <div class="container">
                 <!--왼쪽으로 -100%까지 이동-->
                 <ul class="boxes">
-                  <li class="red">red</li>
-                  <li class="orange">orange</li>
-                  <li class="yellow">yellow</li>
-                  <li class="green">green</li>
-                  <li class="blue">blue</li>
-                  <li class="navy">navy</li>
-                  <li class="violet">violet</li>
+                  <li><img id="bener" src="@/assets/img/bener.jpg"></li>
                 </ul>
                 <!--왼쪽으로 100%에서 0%까지 이동-->
                 <ul class="boxes list2">
-                  <li class="red">red</li>
-                  <li class="orange">orange</li>
-                  <li class="yellow">yellow</li>
-                  <li class="green">green</li>
-                  <li class="blue">blue</li>
-                  <li class="navy">navy</li>
-                  <li class="violet">violet</li>
+                  <li><img id="bener2" src="@/assets/img/bener2.jpg"></li>
                 </ul>
               </div>
 
