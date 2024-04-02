@@ -1,136 +1,62 @@
 <template>
     <div>
         <div id="wrap">
-
             <AppHeader />
-
             <div id="container" class="clearfix">
-
                 <div id="content">
                     <div id="foodmenu">
                         <div id="list">
-                            <div class="clear"></div>
-                            
+                            <div id="clearfix"></div>
                             <ul id="viewArea">
-
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>팝콘</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>1000 원</strong>
-                                            <span> (1042 개)</span>
+                                <li v-bind:key="i" v-for="(foodVo, i) in foodList" @click="selectItem(foodVo)">
+                                    <div class="view">
+                                        <img class="img" v-bind:src="`http://localhost:9000/upload/${foodVo.saveName}`">
+                                        <div class="imgWriter">
+                                            {{ foodVo.fName }}
+                                            <br>
+                                            <strong>{{ foodVo.fPrice }}원</strong>
+                                            <span v-if="countSelected(foodVo) > 0"> ({{ countSelected(foodVo)
+                                                }}개)</span>
                                         </div>
-
                                     </div>
                                 </li>
-
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>음료</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>2000 원</strong>
-                                            <span> (50 개)</span>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>음료</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>2000 원</strong>
-                                            <span> (50 개)</span>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>음료</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>2000 원</strong>
-                                            <span> (50 개)</span>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>음료</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>2000 원</strong>
-                                            <span> (50 개)</span>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="view" >
-                                        
-                                    <p>음료</p>
-                                    <img class="imgItem" src="#">
-                                        <div class="imgWriter">이름: 
-                                            <strong>2000 원</strong>
-                                            <span> (50 개)</span>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                
                             </ul>
                         </div>
-                        
-
-                      
-
                     </div>
-                    
-                    <div id="cart" class="cart">
+
+                    <div id="cart">
                         <h2>장바구니</h2>
-                        <div>
-                            <p> (100000원) x 3</p>
-                        </div>
+                        <p v-for="(item, index) in cartItems" :key="index">{{ item.fName }} ({{ item.fPrice }}원) x
+                            <button class="plusminus" @click="minusItem(item)">-</button>
+                            {{ item.count }}
+                            <button class="plusminus" @click="plusItem(item)">+</button>
+
+                        </p>
                         <div class="cartLast">
-                            <p>총 5개의 상품이 선택됨 <br> 총 가격: 2000원</p>
-                        </div>
-                        <div id="pay-btn">
-                            <router-link to="/payment/paymentform" class="pay" >결제하기</router-link>
+                            <p>총 {{ getTotalItemsCount }}개의 상품이 선택됨 <br> 총 가격: {{ getTotalPrice }}원</p>
+                            <button class="pay" @click="goToPayment">결제하기</button>
                         </div>
                     </div>
+
 
 
                     <div id="clearfix"></div>
-                    <div>
-                        <router-link to="/" id="return-button" >돌아가기</router-link>
-                    </div>
-
-
                     
+                    
+
                 </div>
                 <!-- //content  -->
-
             </div>
             <!-- //container  -->
-            
-
             <AppFooter />
-<!-- //footer -->
-</div>
-<!-- //wrap -->
+            <!-- //footer -->
+        </div>
+        <!-- //wrap -->
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import "@/assets/css/FoodStore.css";
 import AppHeader from "@/components/AppHeader.vue"
 import AppFooter from "@/components/AppFooter.vue"
@@ -143,15 +69,85 @@ export default {
     },
     data() {
         return {
+            foodList: [],
+            cartItems: []
+
         };
     },
     computed: {
-        
+        getTotalItemsCount() {
+            let totalCount = 0;
+            for (let i = 0; i < this.cartItems.length; i++) {
+                totalCount += this.cartItems[i].count;
+            }
+            return totalCount;
+        },
+        getTotalPrice() {
+            let totalPrice = 0;
+            for (let i = 0; i < this.cartItems.length; i++) {
+                totalPrice += this.cartItems[i].fPrice * this.cartItems[i].count;
+            }
+            return totalPrice;
+        }
 
     },
-    methods: {
-        
 
+    methods: {
+        getList() {
+            axios({
+                method: 'get',
+                url: 'http://localhost:9000/api/food/list',
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+
+                responseType: 'json'
+            }).then(response => {
+                this.foodList = response.data.apiData;
+                console.log(this.foodList);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        selectItem(food) {
+            let found = false;
+            for (let i = 0; i < this.cartItems.length; i++) {
+                if (this.cartItems[i].fName == food.fName) {
+                    this.cartItems[i].count++;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                this.cartItems.push({ ...food, count: 1 }); /* 먼 배열 추가 방식 */
+            }
+        },
+        countSelected(food) {
+            const selected = this.cartItems.find(cartItem => cartItem.fName == food.fName);
+            /* cartItems 배열에서 fName이 food.fName과 동일한 첫 번째 요소 찾는 함수임 */
+            return selected ? selected.count : 0; /* 참이면 앞에 값, 아니면 뒤에 0 반환 */
+        },
+        plusItem(item) {
+            item.count++;
+        },
+        minusItem(item) {
+            if (item.count > 0) {
+                item.count--;
+                if (item.count == 0) {
+                    /* findIndex 상품의 fName이 item의 이름과 일치하는지 확인 */
+                    const index = this.cartItems.findIndex(cartItem => cartItem.fName === item.fName);
+                    if (index !== -1) { /* index = -1 > 상품이 없음 */
+                        this.cartItems.splice(index, 1); /* 배열에서 1개 제거 함수 */
+                    }
+                }
+            }
+        },
+        goToPayment() {
+            this.$router.push({ name: 'PaymentCheckView',
+            query: { totalPrice: this.getTotalPrice } })
+            
+        }
+    },
+    created() {
+        this.getList();
     }
 };
 </script>

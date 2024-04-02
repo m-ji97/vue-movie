@@ -1,0 +1,58 @@
+
+  .container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 2000px;
+    height: 800px;
+    overflow: hidden;
+    background: #efefef;
+    ul.boxes{
+      position: absolute;
+      display: flex;
+      gap: 0 0;
+      width: 1024px;
+      animation: aniScroll 15s linear infinite;*
+      li{
+        list-style: none;
+        width: 180px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: #fff;
+        border: 1px solid #ddd;
+        
+      }
+    }
+  }
+  
+  @keyframes aniScroll{
+    0%{ transform: translateX(0%) }
+    100%{ transform: translateX(-100%) }
+  }
+  box li{
+    position: static;
+    float: left;
+  }
+
+  #bener{
+    width: 900px;
+    height: 850px;
+  }
+  #bener1{
+    width: 900px;
+    height: 850px;
+  }
+  #bener2{
+    width: 900px;
+    height: 850px;
+  }
+ #bt{
+  border-radius: 25px;
+  font-size: 50px;
+  border: 3px solid #f02626;
+    width: 900px;
+    height: 200px;
+  }
+  
+  

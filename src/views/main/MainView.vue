@@ -8,19 +8,9 @@
         <!-- aside 없음 -->
         <div id="full-content" >
           <!-- content-head 없음 -->
-          <div id="index">
-            <div id="greetings" style="width: 800px;">
 
-              <div class="container">
-                <!--왼쪽으로 -100%까지 이동-->
-                <ul class="boxes">
-                  <li><img id="bener" src="@/assets/img/bener.jpg"></li>
-                </ul>
-                <!--왼쪽으로 100%에서 0%까지 이동-->
-                <ul class="boxes list2">
-                  <li><img id="bener2" src="@/assets/img/bener2.jpg"></li>
-                </ul>
-              </div>
+          <div id="index">
+            <div id="greetings" style="width: 1020px;">
 
               <div id="mPage-btn">
                 <div id="btn_main">

@@ -1,32 +1,53 @@
 <template>
-  <div class="content">
+    <div class="content">
 
 
         <div id="closeBtn" class="closeBtn">×</div>
 
-        <div class="m-header">좌석 선택</div>
-        
+        <div class="m-header">
+            <h4>인원 선택</h4>
+        </div>
+        <div>
+            <div class="adult">
+                성인
+                <button class="plusminus" @click="minusAdult()">-</button>
+                {{ adultCount }}
+                <button class="plusminus" @click="plusAdult()">+</button>
+            </div>
+            <div class="youth">
+                청소년
+                <button class="plusminus" @click="minusYouth()">-</button>
+                {{ youthCount }}
+                <button class="plusminus" @click="plusYouth()">+</button>
+            </div>
+
+        </div>
+        <br>
+        <div class="m-header">
+            <h4>좌석 선택</h4>
+        </div>
+
         <div class="m-body">
 
 
 
 
 
-          <div>
-              <div class="seats-container">
-                  <div class="screen">□ Screen</div>
-                  <div class="seat-group" v-for="(group, index) in seatGroups" :key="index">
-                      <div class="seat-group-label">{{ String.fromCharCode(65 + index) }}</div>
-                      <div class="seat" v-for="seat in group" :key="seat.id" :class="{ 'selected': seat.selected }"
-                          @click="toggleSeatSelection(seat)">
-                          <div class="seat-content">
-                              <span class="seat-number">{{ seat.number }}</span>
-                              <span class="check-mark" v-if="seat.selected">&#10003;</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div>
+                <div class="seats-container">
+                    <div class="screen">□ Screen</div>
+                    <div class="seat-group" v-for="(group, index) in seatGroups" :key="index">
+                        <div class="seat-group-label">{{ String.fromCharCode(65 + index) }}</div>
+                        <div class="seat" v-for="seat in group" :key="seat.id" :class="{ 'selected': seat.selected }"
+                            @click="toggleSeatSelection(seat)">
+                            <div class="seat-content">
+                                <span class="seat-number">{{ seat.number }}</span>
+                                <span class="check-mark" v-if="seat.selected">&#10003;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -52,8 +73,8 @@
         <div class="m-footer">
             <router-link id="seatpay-btn" to="/payment/paymentform">결제</router-link>
         </div>
-        
-  </div>
+
+    </div>
 </template>
 
 
@@ -61,11 +82,13 @@
 import "@/assets/css/SeatContentView.css";
 
 export default {
-    name: "ContentView",
+    name: "SeatContentView",
     components: {},
     data() {
         return {
-          seats: [
+            adultCount: 0,
+            youthCount: 0,
+            seats: [
                 { id: "A-1", number: 1, selected: false },
                 { id: "A-2", number: 2, selected: false },
                 { id: "A-3", number: 3, selected: false },
@@ -114,12 +137,29 @@ export default {
     },
 
     methods: {
-      toggleSeatSelection(seat) {
+        toggleSeatSelection(seat) {
             seat.selected = !seat.selected;
+        },
+        plusAdult() {
+            this.adultCount++;
+        },
+        minusAdult() {
+            if (this.adultCount > 0) {
+                this.adultCount--;
+            }
+        },
+        plusYouth() {
+            this.youthCount++;
+        },
+        minusYouth() {
+            if (this.youthCount > 0) {
+                this.youthCount--;
+            }
+
+        },
+        created() {
         }
 
-    },
-    created() {
     }
 };
 </script>

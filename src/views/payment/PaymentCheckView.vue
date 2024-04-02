@@ -11,9 +11,9 @@
 
 
 
-                    <h1>결제 수단 선택</h1>
-
+                    
                     <div id="paymentForm" action="" method="">
+                        <h1>결제 수단 선택</h1>
                         <div class="price-info">
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
                         </div>

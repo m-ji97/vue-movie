@@ -3,9 +3,9 @@
     <!-- 이미지등록 팝업(모달)창 -->
     <form action="" method="" enctype="multipart/form-data">
 
-        <div id="closeBtn" class="closeBtn">×</div>
+        <div id="closeBtn" class="closeBtn"  v-on:click="closeAddModal">×</div>
 
-        <div class="m-header">간단한 타이틀</div>
+        <div class="m-header"></div>
         
         <div class="m-body">
 
@@ -61,7 +61,10 @@ export default {
         };
     },
     methods: {
-
+      //모달창 닫기 버튼(X) 클릭했을 때
+      closePayModal(){
+            console.log("클릭");
+        },
     },
     created() {
     }

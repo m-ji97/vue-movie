@@ -4,6 +4,9 @@ import FindView from '@/views/find/FindView.vue'
 import FoodStoreView from '@/views/foodstore/FoodStoreView.vue'
 import TicketView from '@/views/ticket/TicketView.vue'
 import PaymentCheckView from '@/views/payment/PaymentCheckView.vue'
+import MoviePosterView from '@/views/ticket/MoviePosterView.vue'
+import SlideView from '@/views/slide/SlideView.vue'
+import PointUse from '@/views/Point/PointUse.vue'
 
 const routes = [
   {
@@ -29,9 +32,24 @@ const routes = [
   
   {
     path: '/payment/paymentform',
-    name: '/payment/paymentform',
+    name: 'PaymentCheckView',
     component: PaymentCheckView
   },
+  {
+    path: '/ticket/poster',
+    name: '/ticket/poster',
+    component: MoviePosterView
+  },
+  {
+    path: '/SlideView',
+    name: '/slideView',
+    component: SlideView
+  },
+  {
+    path: '/pointuse',
+    name: '/PointUse',
+    component: PointUse
+  }
   
 ]
 
