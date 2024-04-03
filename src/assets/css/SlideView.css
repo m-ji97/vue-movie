@@ -12,7 +12,7 @@
       display: flex;
       gap: 0 0;
       width: 1024px;
-      animation: aniScroll 15s linear infinite;*
+      animation: aniScroll 6s linear infinite;*
       li{
         list-style: none;
         width: 180px;
@@ -36,15 +36,15 @@
   }
 
   #bener{
-    width: 900px;
+    width: 600px;
     height: 850px;
   }
   #bener1{
-    width: 900px;
+    width: 625px;
     height: 850px;
   }
   #bener2{
-    width: 900px;
+    width: 625px;
     height: 850px;
   }
  #bt{

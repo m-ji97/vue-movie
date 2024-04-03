@@ -16,11 +16,21 @@
 }
 #check-btn{
     display: inline-block;
-}
-
-#search-button {
     width: 100px;
     height: 100px;
 }
-#check-btn{
+#point-button{
+    width: 100px;
+    height: 100px;
+    padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #e70c0c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#point-button:hover {
+  background-color: #8d1904;
 }

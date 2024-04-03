@@ -15,36 +15,42 @@
                     <div id="paymentForm" action="" method="">
                         <h1>결제 수단 선택</h1>
                         <div class="price-info">
-                            <p class="total-price">잔여포인트: {{ totalPrice }}원</p>
-                            <p class="total-price">사용가능포인트: {{ totalPrice }}원</p>
-                            <p class="total-price">사용포인트: {{ totalPrice }}원</p>
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
-                        
+                            <p class="total-price">사용가능포인트: {{ totalPrice }}원</p>
+                            <p class="total-price">사용포인트:  <input type="text" v-model="phoneNumber" placeholder=""> p</p>
+                            <p class="total-price">총 금액: {{ totalPrice }}원</p>
                         </div>
+                        <div class="dial-container">
+                            <div class="dial-button" @click="appendNumber(1)">1</div>
+                            <div class="dial-button" @click="appendNumber(2)">2</div>
+                            <div class="dial-button" @click="appendNumber(3)">3</div>
+                            <br>
+                            <div class="dial-button" @click="appendNumber(4)">4</div>
+                            <div class="dial-button" @click="appendNumber(5)">5</div>
+                            <div class="dial-button" @click="appendNumber(6)">6</div>
+                            <br>
+                            <div class="dial-button" @click="appendNumber(7)">7</div>
+                            <div class="dial-button" @click="appendNumber(8)">8</div>
+                            <div class="dial-button" @click="appendNumber(9)">9</div>
+                            <br>
+                            <div class="dial-button" @click="appendNumber(0)">0</div>
+                            <div class="dial-button" @click="deleteLastDigit">지움</div>
+                            <div class="dial-button" @click="clearPhoneNumberMethod">전체삭제</div>
+                        </div>
+                        
                         <div class="payment-methods">
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
                                 <PaymentContentView></PaymentContentView>
                             </ModalView>
 
-                            
                             <div class="payment-method" @click="isModalViewed = true">
-                                <img id="card" src="@/assets/img/card.png">카드 결제</div>
-                            <div class="payment-method" @click="isModalViewed = true">
-                                <img id="cash" src="@/assets/img/cash.png">현금 결제</div>
+                                적용하기</div>
                         </div>
                         <input type="hidden" name="payment_method" id="paymentMethod">
                         <input type="submit" value="결제">
                     </div>
                     <div>
                     </div>
-
-
-
-
-
-
-
-
 
                 </div>
                 <!-- //content  -->

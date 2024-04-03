@@ -18,7 +18,7 @@
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
                                 <PointCheckContent2View></PointCheckContent2View>
                             </ModalView>
-                            <button id="search-button" @click="isModalViewed=true">포인트조회</button>
+                            <button id="point-button" @click="isModalViewed=true">포인트조회</button>
                         </div>
                     </div>
                 </div>
