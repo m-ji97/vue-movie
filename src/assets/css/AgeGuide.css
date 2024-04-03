@@ -1,0 +1,27 @@
+#yearolds{
+    border: 2px solid #ff4343;
+    border-radius: 25px;
+    width: 350px;
+    padding: 30px 15px;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 250px 600px;
+    background-color: #ffffff;
+}
+#Age12{
+    width: 15px;
+}
+#Age15{
+    width: 15px;
+}
+#Age18{
+    width: 18px;
+}
+#agree{
+    display: inline-block;
+    width: 100px;
+    margin: 10px;
+    background-color: #ff4343;
+    border: #ffffff;
+    color: #ffffff;
+}

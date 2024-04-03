@@ -15,7 +15,10 @@ import ChoosePoint2View from '@/views/foodstore/ChoosePoint2View.vue'
 import EndPoint2View from '@/views/foodstore/EndPoint2View.vue'
 import PlusPoint2View from '@/views/foodstore/PlusPoint2View.vue'
 import PointUse2 from '@/views/foodstore/PointUse2.vue'
-import PointUseView2 from '@/views/foodstore/PointUseView.vue'
+import PointUseView from '@/views/foodstore/PointUseView.vue'
+import ageguide12 from '@/views/AgeGuide/AgeGuide12.vue'
+import ageguide15 from '@/views/AgeGuide/AgeGuide15.vue'
+import ageguide18 from '@/views/AgeGuide/AgeGuide18.vue'
 
 const routes = [
   {
@@ -102,9 +105,23 @@ const routes = [
   {
     path: '/foodstore/pointuseview',
     name: '/foodstore/pointuseview',
-    component: PointUseView2
+    component: PointUseView
+  },
+  {
+    path: '/ageguide/ageguide12',
+    name: '/ageguide/ageguide12',
+    component: ageguide12
+  },
+  {
+    path: '/ageguide/ageguide15',
+    name: '/ageguide/ageguide15',
+    component: ageguide15
+  },
+  {
+    path: '/ageguide/ageguide18',
+    name: '/ageguide/ageguide18',
+    component: ageguide18
   }
-  
 ]
 
 const router = createRouter({

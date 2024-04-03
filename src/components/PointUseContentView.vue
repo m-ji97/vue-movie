@@ -16,9 +16,6 @@
                             <p class="total-price">사용포인트:  <input type="text" v-model="phoneNumber" placeholder=""> p</p>
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
 
-                            <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
-                                <PointUseContentView></PointUseContentView>
-                            </ModalView>
                         </div>
                         <div class="dial-container">
                             <div class="dial-button" @click="appendNumber(1)">1</div>
