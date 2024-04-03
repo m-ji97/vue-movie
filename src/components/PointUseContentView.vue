@@ -1,24 +1,24 @@
 <template>
-    <div>
-        <div id="wrap">
-
-            <AppHeader />
-
-            <div id="container" class="clearfix">
-
-                <div id="content">
-
-
-
-
-                    
-                    <div id="paymentForm" action="" method="">
-                        <h1>결제 수단 선택</h1>
-                        <div class="price-info">
+    <div class="content">
+      <!-- 이미지등록 팝업(모달)창 -->
+      <form action="" method="" enctype="multipart/form-data">
+  
+          <div id="closeBtn" class="closeBtn">×</div>
+  
+          <div class="m-header"></div>
+          
+          <div class="m-body">
+            <div id="pointuse" action="" method="">
+                        <h1>포인트 사용</h1>
+                        <div class="point-info">
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
                             <p class="total-price">사용가능포인트: {{ totalPrice }}원</p>
                             <p class="total-price">사용포인트:  <input type="text" v-model="phoneNumber" placeholder=""> p</p>
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
+
+                            <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
+                                <PointUseContentView></PointUseContentView>
+                            </ModalView>
                         </div>
                         <div class="dial-container">
                             <div class="dial-button" @click="appendNumber(1)">1</div>
@@ -40,46 +40,33 @@
                         
                         <div class="payment-methods">
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
-                                <PaymentContentView></PaymentContentView>
+                                <PointUseContentView></PointUseContentView>
                             </ModalView>
 
-                            <div class="payment-method" @click="isModalViewed = true">
+                            <div class="point-method" @click="isModalViewed = true">
                                 적용하기</div>
                         </div>
                         <input type="hidden" name="payment_method" id="paymentMethod">
                         <input type="submit" value="결제">
                     </div>
-                    <div>
-                    </div>
-
-                </div>
-                <!-- //content  -->
-
-            </div>
-            <!-- //container  -->
-
-
-            <AppFooter />
-            <!-- //footer -->
-        </div>
-        <!-- //wrap -->
+          </div>
+          
+      </form>
     </div>
-</template>
-
-<script>
-import "@/assets/css/PaymentCheckView.css";
-import AppHeader from "@/components/AppHeader.vue"
-import AppFooter from "@/components/AppFooter.vue"
-import ModalView from "@/components/ModalView.vue";
-import PaymentContentView from '@/components/PaymentContentView.vue';
-
-export default {
-    name: "PointckeckView",
-    components: {
-        AppFooter,
-        AppHeader,
+  </template>
+  
+  
+  <script>
+  import "@/assets/css/PointUseView.css";
+  import ModalView from "@/components/ModalView.vue";
+  import PointUseContentView from '@/components/PointUseContentView.vue';
+  
+  
+  export default {
+      name: "PointUseView",
+      components: {
         ModalView,
-        PaymentContentView
+        PointUseContentView
     },
     data() {
         return {
@@ -97,4 +84,5 @@ export default {
 
     }
 };
-</script>
+  </script>
+  

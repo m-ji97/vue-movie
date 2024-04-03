@@ -15,7 +15,7 @@ import ChoosePoint2View from '@/views/foodstore/ChoosePoint2View.vue'
 import EndPoint2View from '@/views/foodstore/EndPoint2View.vue'
 import PlusPoint2View from '@/views/foodstore/PlusPoint2View.vue'
 import PointUse2 from '@/views/foodstore/PointUse2.vue'
-import Pointckeck2 from '@/views/foodstore/PointCheckView2.vue'
+import PointUseView2 from '@/views/foodstore/PointUseView.vue'
 
 const routes = [
   {
@@ -100,9 +100,9 @@ const routes = [
     component: PointUse2
   },
   {
-    path: '/foodstore/pointckeck',
-    name: '/foodstore/Pointckeck',
-    component: Pointckeck2
+    path: '/foodstore/pointuseview',
+    name: '/foodstore/pointuseview',
+    component: PointUseView2
   }
   
 ]

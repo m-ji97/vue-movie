@@ -1,0 +1,20 @@
+.point-method {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #e70c0c;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px ;
+    font-weight:bold;
+}
+.point-info{
+    font-size: 19px;
+}
+
+#pointuse h1{
+    padding-top: 30px;
+}
+
+.payment-methods{
+    padding-bottom: 30px;
+}
