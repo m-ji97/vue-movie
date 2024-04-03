@@ -15,7 +15,11 @@
                     <div id="paymentForm" action="" method="">
                         <h1>결제 수단 선택</h1>
                         <div class="price-info">
+                            <p class="total-price">잔여포인트: {{ totalPrice }}원</p>
+                            <p class="total-price">사용가능포인트: {{ totalPrice }}원</p>
+                            <p class="total-price">사용포인트: {{ totalPrice }}원</p>
                             <p class="total-price">총 금액: {{ totalPrice }}원</p>
+                        
                         </div>
                         <div class="payment-methods">
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
@@ -64,7 +68,7 @@ import ModalView from "@/components/ModalView.vue";
 import PaymentContentView from '@/components/PaymentContentView.vue';
 
 export default {
-    name: "FoodstoreView",
+    name: "PointckeckView",
     components: {
         AppFooter,
         AppHeader,

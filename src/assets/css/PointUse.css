@@ -1,3 +1,39 @@
+#pointInfo{
+    display: inline-flex;
+    height: 100px;
+}
+#pointInput{
+    display: inline-block;
+    width: 240px;
+}
+#pointInput input[type="text"]{
+    width: 200px;
+    height: 20px;
+}
 #birth{
-    margin-left: 60px;
+    display: inline-block;
+    margin-top: 15px;
+}
+#check-btn{
+    display: flex;
+}
+
+#check-button {
+    background-color: lightcoral;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+#check-button:hover {
+    background-color: #8d1904;
+}
+
+#point-title {
+    display: inline-block;
+    font-size: 25px;
+    margin-bottom: 30px;
 }

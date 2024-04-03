@@ -4,16 +4,24 @@
             <AppHeader />
             <div id="app">
                 <div id="input-container">
-                    <input type="text" v-model="phoneNumber" placeholder="010-0000-0000">
-                    <pre></pre>
-                    <input id="birth" type="text" v-model="dateInput" placeholder="YYYYMMDD">
-                    
-                    <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
-                        <FindContentView></FindContentView>
-                    </ModalView>
-                    <button id="search-button" @click="isModalViewed=true">포인트조회</button>
+                    <div class="clearfix"></div>
+                    <div id="pointInfo">
+                        <div id="pointInput">
+                            <div id="check-hp">
+                                <input type="text" v-model="phoneNumber" placeholder="010-0000-0000">
+                            </div>
+                            <div id="birth">
+                                <input type="text" v-model="dateInput" placeholder="YYYYMMDD">
+                            </div>
+                        </div>
+                        <div id="check-btn">
+                            <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
+                                <PointCheckContent2View></PointCheckContent2View>
+                            </ModalView>
+                            <button id="search-button" @click="isModalViewed=true">포인트조회</button>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="dial-container">
                     <div class="dial-button" @click="appendNumber(1)">1</div>
                     <div class="dial-button" @click="appendNumber(2)">2</div>
@@ -33,7 +41,7 @@
                 </div>
 
                 <div>
-                    <router-link to="/" id="return-button">돌아가기</router-link>
+                    <router-link to="/ticket/choosepoint2" id="return-button">돌아가기</router-link>
                 </div>
             </div>
             <AppFooter />
@@ -42,20 +50,19 @@
 </template>
 
 <script>
-import "@/assets/css/FindView.css";
-import "@/assets/css/PointUse.css";
+import "@/assets/css/PointUse2.css";
 import AppHeader from "@/components/AppHeader.vue"
 import AppFooter from "@/components/AppFooter.vue"
 import ModalView from "@/components/ModalView.vue";
-import FindContentView from "@/components/FindContentView.vue";
+import PointCheckContent2View from "@/components/PointCheckContent2View.vue";
 
 export default {
-    name: "FindView",
+    name: "PointUse2",
     components: {
         AppHeader,
         AppFooter,
         ModalView,
-        FindContentView,
+        PointCheckContent2View,
     },
     data() {
         return {

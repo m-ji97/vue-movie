@@ -1,0 +1,26 @@
+#pointInfo{
+    display: inline-flex;
+    height: 100px;
+}
+#pointInput{
+    display: inline-block;
+    width: 240px;
+}
+#pointInput input[type="text"]{
+    width: 200px;
+    height: 20px;
+}
+#birth{
+    display: inline-block;
+    margin-top: 15px;
+}
+#check-btn{
+    display: inline-block;
+}
+
+#search-button {
+    width: 100px;
+    height: 100px;
+}
+#check-btn{
+}

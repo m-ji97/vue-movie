@@ -9,7 +9,7 @@
         </div>
         <!-- //header -->
         <nav id="nav">
-            <router-link to="/">
+            <router-link to="/main/main">
                 <img id="home" src="@/assets/img/home_bt.png" alt="home" width="50px" />
             </router-link>
         </nav>

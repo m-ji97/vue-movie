@@ -40,7 +40,9 @@ th:first-child{
     width: 150px;
     /*border-bottom: 1px solid #c1a3a3;*/
 }
-
+#mInfo #seat_btn{
+    margin: 15px 0 15px 0;
+}
 .space{
     padding: 3px;
     /*border-right: 1px solid #c1a3a3;*/

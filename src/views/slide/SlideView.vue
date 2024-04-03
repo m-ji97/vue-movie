@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/">
+    <router-link to="/main/main">
     <div class="container">
         
         <ul class="boxes">
