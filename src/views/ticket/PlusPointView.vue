@@ -7,22 +7,14 @@
             <div id="container" class="clearfix">
 
                 <div id="content">
-
-
-
-
                     <div>
                         <div id="app">
                             <div id="input-container">
-                                <div class="clearfix"></div>
-                                <div id="point-title2">
-                                    <h1>포인트적립</h1>
-                                </div>
-                                <div class="clearfix"></div>
                                 <div id="point-box">
-                                    <input id="hp-input" type="text" v-model="hp" placeholder="핸드폰 번호를 입력해 주세요">
+                                    <input id="hp-input" type="text" v-model="phoneNumber"
+                                        placeholder="핸드폰 번호를 입력해 주세요">
                                     <div id="point-btn">
-                                        <router-link id="search-btn" to="/ticket/endpoint">적립하기</router-link>
+                                        <button id="search-btn" @click="getPoint">적립하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -50,16 +42,8 @@
                             <router-link to="/ticket/choosepoint" id="return-button">돌아가기</router-link>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
-
             </div>
-
-            <AppFooter />
 
         </div>
     </div>
@@ -67,39 +51,66 @@
 
 
 <script>
+import axios from 'axios';
 import "@/assets/css/PlusPointView.css"
 import AppHeader from '@/components/AppHeader.vue';
-import AppFooter from '@/components/AppFooter.vue';
 
 export default {
     name: "PlusPointView",
     components: {
         AppHeader,
-        AppFooter,
     },
     data() {
         return {
-            hp:"",
-            dataInput:"",
+            phoneNumber: "010",
+            dataInput: "",
+            point: "",
+            plusPoint: ""
         };
     },
     methods: {
         numberPlate(num) {
-            if (this.hp.length < 11) {
-                this.hp += num;
+            if (this.phoneNumber.length < 11) {
+                this.phoneNumber += num;
             } else if (this.dataInput.length < 8) {
                 this.dataInput += num;
             }
         },
         deleteLastNum() {
             if (this.dataInput.length > 0) {
-                this.dataInput=this.dataInput.slice(0, -1);
-            } else if (this.hp.length > 0) {
-                this.hp=this.hp.slice(0, -1);
+                this.dataInput = this.dataInput.slice(0, -1);
+            } else if (this.phoneNumber.length > 0) {
+                this.phoneNumber = this.phoneNumber.slice(0, -1);
             }
         },
         clearScreen() {
-            this.hp="";
+            this.phoneNumber = "";
+        },
+        
+        getPoint() {
+            axios({
+                method: 'get',
+                url: 'http://localhost:9000/api/movie/point',
+                params: {
+                    phoneNumber: this.phoneNumber
+                },
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                this.point = response.data.apiData;
+                this.plusPoint = this.totalPrice * 0.05;
+                this.$store.commit('setPoint', this.point);
+                this.$store.commit('setPhoneNumber', this.phoneNumber);
+                this.goToPayment();
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        
+        goToPayment() {
+            this.$router.push({
+                name: 'EndPointView'
+            });
         },
     },
 };

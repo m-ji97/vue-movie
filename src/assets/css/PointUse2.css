@@ -9,6 +9,7 @@
 #pointInput input[type="text"]{
     width: 200px;
     height: 20px;
+    padding: 10px;
 }
 #birth{
     display: inline-block;
@@ -16,21 +17,15 @@
 }
 #check-btn{
     display: inline-block;
-    width: 100px;
-    height: 100px;
-}
-#point-button{
-    width: 100px;
-    height: 100px;
-    padding: 10px 20px;
-  margin-left: 10px;
-  background-color: #e70c0c;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
 }
 
-#point-button:hover {
-  background-color: #8d1904;
+#search-button02 {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #e70c0c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    height: 100px;
 }

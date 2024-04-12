@@ -5,14 +5,10 @@
             <div id="app">
                 <div id="input-container">
                     <div class="clearfix"></div>
-                    <div id="point-title">
-                        <h1>포인트사용</h1>
-                    </div>
-                    <div class="clearfix"></div>
                     <div id="pointInfo">
                         <div id="pointInput">
                             <div id="check-hp">
-                                <input type="text" v-model="phoneNumber" placeholder="010-0000-0000">
+                                <input type="text" v-model="phoneNumber" >
                             </div>
                             <div id="birth">
                                 <input type="text" v-model="dateInput" placeholder="YYYYMMDD">
@@ -22,7 +18,7 @@
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
                                 <PointCheckContentView></PointCheckContentView>
                             </ModalView>
-                            <button id="check-button" @click="isModalViewed=true">포인트조회</button>
+                            <button id="search-button02" @click="getPoint">포인트조회</button>
                         </div>
                     </div>
                 </div>
@@ -48,15 +44,14 @@
                     <router-link to="/ticket/choosepoint" id="return-button">돌아가기</router-link>
                 </div>
             </div>
-            <AppFooter />
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import "@/assets/css/PointUse.css";
 import AppHeader from "@/components/AppHeader.vue"
-import AppFooter from "@/components/AppFooter.vue"
 import ModalView from "@/components/ModalView.vue";
 import PointCheckContentView from "@/components/PointCheckContentView.vue";
 
@@ -64,14 +59,13 @@ export default {
     name: "PointUse",
     components: {
         AppHeader,
-        AppFooter,
         ModalView,
         PointCheckContentView,
     },
     data() {
         return {
             isModalViewed: false,
-            phoneNumber: '',
+            phoneNumber: '010',
             dateInput: '',
             reservationNumber: '',
         };
@@ -95,6 +89,28 @@ export default {
             this.phoneNumber = ''; // 휴대폰 번호를 초기화합니다.
             this.dateInput = ''; // 휴대폰 번호를 초기화합니다.
         },
+        
+        getPoint() {
+            this.isModalViewed = true
+            axios({
+                method: 'get',
+                url: 'http://localhost:9000/api/movie/point02',
+                params: {
+                    phoneNumber: this.phoneNumber,
+                    birth: this.dateInput
+                },
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                this.point = response.data.apiData;
+
+                const usePoint = this.point;
+                this.$store.commit('setUsePoint', usePoint);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+        
     },
     created() {
     }

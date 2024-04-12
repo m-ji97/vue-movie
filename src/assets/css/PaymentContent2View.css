@@ -1,38 +1,96 @@
-
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
 h1 {
     text-align: center;
-    color: #e71919;
 }
 
-p {
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f2f2f2;
+}
+
+.ticket {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border: 3px solid #ff4d4d;
+    border-radius: 10px;
+    height: 550px; /* 더 큰 값으로 조정 */
     text-align: center;
-    margin-top: 20px;
+    margin: 0 auto;
+    position: relative;
 }
 
-.button-container {
+.ticket:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.order-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000000;
+    padding-top: 10px;
     text-align: center;
-    margin-top: 30px;
 }
 
-.btn-home {
-    padding: 10px 20px;
-    background-color: #e71919;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
+.number {
+    font-size: 60px;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #ff4d4d;
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
-.btn-home:hover {
-    background-color: #bc1e06;
+.money {
+    font-size: 20px;
+    color: #000000;
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.moneyList {
+    font-size: 15px;
+    color: #000000;
+    text-align: center;
+    min-height: 50px;
+    line-height: 1;
+}
+
+.barcode {
+    margin-top: 400px; /* 더 큰 값으로 조정 */
+    margin-bottom: 20px;
+    width: 150px; /* 오타 수정: '150x' -> '150px' */
+    position: relative;
+}
+
+.home{
+    margin-top: 600px;
+}
+.point {
+    font-size: 15px;
+    color: #000000;
+    padding-top: 10px;
+    text-align: left;
+    padding-bottom: 15px;
+    border-top: 2px solid #ff4d4d;
+}
+
+.barcode-wrapper {
+    text-align: center;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#content{
+    font-size: 16px;
+
 }

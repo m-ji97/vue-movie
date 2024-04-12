@@ -4,8 +4,7 @@
         
         <ul class="boxes">
             <li><img id="bener" src="@/assets/img/코난.jpg"></li>
-            <li><img id="bener1" src="@/assets/img/댓글부대.jpg"></li>
-            <li><img id="bener2" src="@/assets/img/파묘.jpg"></li>    
+            <li><img id="bener1" src="@/assets/img/댓글부대.jpg"></li>    
         </ul>
         
     </div>

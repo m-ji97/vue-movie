@@ -23,8 +23,10 @@ th:first-child{
 }
 
 #img-movie{
-    width: 80px;
-    height: 100px;
+    width: 130px;
+    height: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     float: left;
 }
 
@@ -68,4 +70,38 @@ th:first-child{
   
   #return-button:hover {
     background-color: #0056b3;
+  }
+
+
+
+  #ticket-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #e70c0c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #ticket-btn:hover {
+    background-color: thistle;
+  }
+
+  #mlist-head {
+    height: 50px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+
+  #mlist-tbody{
+    border: 1px solid black;
+  }
+
+  #btn-ticketbox {
+    margin-bottom: 20px;
+    margin-right: 5px;
   }

@@ -29,16 +29,21 @@
                 <div class="seats-content">
                     <div class="seats-container">
                         <div class="screen">□ Screen</div>
+
                         <div class="seat-group" v-for="(group, index) in seatGroups" :key="index">
+
                             <div class="seat-group-label">{{ String.fromCharCode(65 + index) }}</div>
+
                             <div class="seat" v-for="seat in group" :key="seat.id"
                                 :class="{ 'selected': seat.selected }" @click="toggleSeatSelection(seat)">
                                 <div class="seat-content">
                                     <span class="seat-number">{{ seat.number }}</span>
                                     <span class="check-mark" v-if="seat.selected">&#10003;</span>
                                 </div>
+                                
                             </div>
                         </div>
+
                     </div>
                     <div class="right-section">
                         <div class="m-footer">
@@ -46,14 +51,12 @@
                             <p>청소년 {{ youthCount }}명 {{ youthCount * 10000 }}원</p>
                             <p>최종 결제 금액: {{ adultCount * 15000 + youthCount * 10000 }}원</p>
                             <br><br>
-                            <router-link id="seatpay-btn" to="/ticket/choosepoint"
-                                :disabled="!seatSelect">결제</router-link>
+                            <button id="seatpay-btn" @click="goToPayment">결제하기</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
 
@@ -65,6 +68,7 @@ import "@/assets/css/SeatContentView.css";
 
 export default {
     name: "SeatContentView",
+    props: ['movieNum'],
     data() {
         return {
             adultCount: 0,
@@ -147,6 +151,23 @@ export default {
             if (this.youthCount > 0) {
                 this.youthCount--;
             }
+        },
+        goToPayment() {
+            let totalMoviePrice = this.adultCount * 15000 + this.youthCount * 10000;
+            console.log(totalMoviePrice)
+            /*
+            let cartMovieItems = this.cartMovieItems.map(item => {
+                return {
+                    m_no: item.m_no,
+                    m_count: item.count
+                };
+            });
+            */
+            //console.log("dddddddddddddd",cartMovieItems)
+            this.$store.commit('setTotalMoviePrice', totalMoviePrice);
+            //this.$store.commit('setCartMovieItems', cartMovieItems);
+            this.$store.commit('setPlusPoint', totalMoviePrice * 0.05);
+            this.$router.push({ name: 'ChoosePointView' });
         }
     }
 }

@@ -10,10 +10,9 @@
                             <ul id="viewArea">
                                 <li v-bind:key="i" v-for="(foodVo, i) in foodList" @click="selectItem(foodVo)">
                                     <div class="view">
-                                        <!-- 
+                                        
                                         <img class="img" v-bind:src="`http://localhost:9000/upload/${foodVo.saveName}`">
-                                         -->
-                                        <img class="img" src="../../assets/img/popcorn.png">
+                                         
                                         <div class="imgWriter">
                                             {{ foodVo.f_name }}
                                             <br>
@@ -37,6 +36,7 @@
                         </p>
                         <div class="cartLast">
                             <p>총 {{ getTotalItemsCount }}개의 상품이 선택됨 <br> 총 가격: {{ getTotalPrice }}원</p>
+                            
                             <button class="pay" @click="goToPayment">결제하기</button>
                         </div>
                     </div>
@@ -44,14 +44,13 @@
 
 
                     <div id="clearfix"></div>
-                    
-                    
+
+
 
                 </div>
                 <!-- //content  -->
             </div>
             <!-- //container  -->
-            <AppFooter />
             <!-- //footer -->
         </div>
         <!-- //wrap -->
@@ -62,19 +61,17 @@
 import axios from 'axios';
 import "@/assets/css/FoodStore.css";
 import AppHeader from "@/components/AppHeader.vue"
-import AppFooter from "@/components/AppFooter.vue"
 
 export default {
     name: "FoodstoreView",
     components: {
-        AppFooter,
         AppHeader,
     },
     data() {
         return {
             foodList: [],
-            cartItems: []
-
+            cartItems: [],
+            cartVo: {}
         };
     },
     computed: {
@@ -92,7 +89,6 @@ export default {
             }
             return totalPrice;
         }
-
     },
 
     methods: {
@@ -106,6 +102,7 @@ export default {
             }).then(response => {
                 this.foodList = response.data.apiData;
                 console.log(this.foodList);
+                console.log("fsdfsdfsdfsdfsdfsdfsdf");
             }).catch(error => {
                 console.log(error);
             });
@@ -144,10 +141,20 @@ export default {
             }
         },
         goToPayment() {
-            this.$router.push({ name: 'PaymentCheckView',
-            query: { totalPrice: this.getTotalPrice } })
-            
+            let totalPrice = this.getTotalPrice;
+            let cartItems = this.cartItems.map(item => {
+                return {
+                    f_no: item.f_no,
+                    f_count: item.count
+                };
+            });
+            console.log("dddddddddddddd",cartItems)
+            this.$store.commit('setTotalPrice', totalPrice);
+            this.$store.commit('setCartItems', cartItems);
+            this.$store.commit('setPlusPoint', totalPrice * 0.05);
+            this.$router.push({ name: 'ChoosePoint2View' });
         }
+
     },
     created() {
         this.getList();

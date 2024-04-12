@@ -8,7 +8,7 @@
                     <div id="pointInfo">
                         <div id="pointInput">
                             <div id="check-hp">
-                                <input type="text" v-model="phoneNumber" placeholder="010-0000-0000">
+                                <input type="text" v-model="phoneNumber" >
                             </div>
                             <div id="birth">
                                 <input type="text" v-model="dateInput" placeholder="YYYYMMDD">
@@ -16,9 +16,9 @@
                         </div>
                         <div id="check-btn">
                             <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
-                                <PointUseContentView></PointUseContentView>
+                                <PointCheckContent2View></PointCheckContent2View>
                             </ModalView>
-                            <button id="point-button" @click="isModalViewed=true">포인트조회</button>
+                            <button id="search-button02" @click="getPoint">포인트조회</button>
                         </div>
                     </div>
                 </div>
@@ -41,33 +41,31 @@
                 </div>
 
                 <div>
-                    <router-link to="/ticket/choosepoint2" id="return-button">돌아가기</router-link>
+                    <router-link to="/foodstore/choosepoint2" id="return-button">돌아가기</router-link>
                 </div>
             </div>
-            <AppFooter />
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import "@/assets/css/PointUse2.css";
 import AppHeader from "@/components/AppHeader.vue"
-import AppFooter from "@/components/AppFooter.vue"
 import ModalView from "@/components/ModalView.vue";
-import PointUseContentView from "@/components/PointUseContentView.vue";
+import PointCheckContent2View from "@/components/PointCheckContent2View.vue";
 
 export default {
     name: "PointUse2",
     components: {
         AppHeader,
-        AppFooter,
         ModalView,
-        PointUseContentView,
+        PointCheckContent2View,
     },
     data() {
         return {
             isModalViewed: false,
-            phoneNumber: '',
+            phoneNumber: '010',
             dateInput: '',
             reservationNumber: '',
         };
@@ -91,6 +89,26 @@ export default {
             this.phoneNumber = ''; // 휴대폰 번호를 초기화합니다.
             this.dateInput = ''; // 휴대폰 번호를 초기화합니다.
         },
+        getPoint() {
+            this.isModalViewed = true
+            axios({
+                method: 'get',
+                url: 'http://localhost:9000/api/food/point02',
+                params: {
+                    phoneNumber: this.phoneNumber,
+                    birth: this.dateInput
+                },
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                responseType: 'json'
+            }).then(response => {
+                this.point = response.data.apiData;
+
+                const usePoint = this.point;
+                this.$store.commit('setUsePoint', usePoint);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     },
     created() {
     }

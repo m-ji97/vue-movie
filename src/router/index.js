@@ -3,7 +3,7 @@ import MainView from '@/views/main/MainView.vue'
 import FindView from '@/views/find/FindView.vue'
 import FoodStoreView from '@/views/foodstore/FoodStoreView.vue'
 import TicketView from '@/views/ticket/TicketView.vue'
-import PaymentCheckView from '@/views/payment/PaymentCheckView.vue'
+import PaymentCheckView from '@/views/ticket/PaymentCheckView.vue'
 import MoviePosterView from '@/views/ticket/MoviePosterView.vue'
 import TestView from '@/views/ticket/TestView.vue'
 import SlideView from '@/views/slide/SlideView.vue'
@@ -15,10 +15,10 @@ import ChoosePoint2View from '@/views/foodstore/ChoosePoint2View.vue'
 import EndPoint2View from '@/views/foodstore/EndPoint2View.vue'
 import PlusPoint2View from '@/views/foodstore/PlusPoint2View.vue'
 import PointUse2 from '@/views/foodstore/PointUse2.vue'
-import PointUseView from '@/views/foodstore/PointUseView.vue'
-import ageguide12 from '@/views/AgeGuide/AgeGuide12.vue'
-import ageguide15 from '@/views/AgeGuide/AgeGuide15.vue'
-import ageguide18 from '@/views/AgeGuide/AgeGuide18.vue'
+import PaymentCheckView3 from '@/views/foodstore/PaymentCheckView3.vue'
+import PaymentCheckView2 from '@/views/foodstore/PaymentCheckView2.vue'
+import PaymentCheckView4 from '@/views/ticket/PaymentCheckView4.vue'
+import PaymentCheckView5 from '@/views/ticket/PaymentCheckView5.vue'
 
 const routes = [
   {
@@ -48,7 +48,7 @@ const routes = [
   },
   
   {
-    path: '/payment/paymentform',
+    path: '/ticket/paymentform',
     name: 'PaymentCheckView',
     component: PaymentCheckView
   },
@@ -64,12 +64,12 @@ const routes = [
   },
   {
     path: '/ticket/choosepoint',
-    name: '/ticket/choosepoint',
+    name: 'ChoosePointView',
     component: ChoosePointView
   },
   {
     path: '/ticket/endpoint',
-    name: '/ticket/endpoint',
+    name: 'EndPointView',
     component: EndPointView
   },
   {
@@ -84,44 +84,45 @@ const routes = [
   },
   {
     path: '/foodstore/choosepoint2',
-    name: '/foodstore/choosepoint2',
+    name: 'ChoosePoint2View',
     component: ChoosePoint2View
   },
   {
     path: '/foodstore/endpoint2',
-    name: '/foodstore/endpoint2',
+    name: 'EndPoint2View',
     component: EndPoint2View
   },
   {
     path: '/foodstore/pluspoint2',
-    name: '/foodstore/pluspoint2',
+    name: 'PlusPoint2View',
     component: PlusPoint2View
   },
   {
     path: '/foodstore/pointuse2',
-    name: '/foodstore/pointuse2',
+    name: 'PointUse2',
     component: PointUse2
   },
   {
-    path: '/foodstore/pointuseview',
-    name: '/foodstore/pointuseview',
-    component: PointUseView
+    path: '/foodstore/paymentform03',
+    name: 'PaymentCheckView3',
+    component: PaymentCheckView3
   },
   {
-    path: '/ageguide/ageguide12',
-    name: '/ageguide/ageguide12',
-    component: ageguide12
+    path: '/foodstore/paymentform',
+    name: 'PaymentCheckView2',
+    component: PaymentCheckView2
   },
   {
-    path: '/ageguide/ageguide15',
-    name: '/ageguide/ageguide15',
-    component: ageguide15
+    path: '/ticket/paymentform04',
+    name: 'PaymentCheckView4',
+    component: PaymentCheckView4
   },
   {
-    path: '/ageguide/ageguide18',
-    name: '/ageguide/ageguide18',
-    component: ageguide18
-  }
+    path: '/ticket/paymentform05',
+    name: 'PaymentCheckView5',
+    component: PaymentCheckView5
+  },
+  
 ]
 
 const router = createRouter({

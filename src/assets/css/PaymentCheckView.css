@@ -8,8 +8,11 @@ body {
     display: inline-block;
     text-align: center;
 }
-#content {
+
+#content{
+    font-size: 18px;
 }
+
 h1 {
     text-align: center;
 }

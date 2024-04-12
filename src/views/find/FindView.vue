@@ -3,17 +3,77 @@
         <div id="wrap">
             <AppHeader />
             <div id="app">
-                <div id="input-container">
-                    <input type="text" v-model="phoneNumber" placeholder="010-0000-0000">
-                    <!--
-                <input type="text" v-model="dateInput" placeholder="YYYYMMDD">
-            -->
-                    <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
+                <div class="content" v-if="reservationOnOff">
+
+                    <ModalView v-if="isModalViewed"  :is-open="isModalViewed" :selected-movie="selectedMovie" @close-modal="isModalViewed = false">
+                        <FindContentView v-bind:m_r_no="click_m_r_no"></FindContentView>
+                    </ModalView>
+
+                    <!-- 
+                    <ModalView :is-open="isModalViewed" @close-modal="isModalViewed = false"
+                        :selected-movie="selectedMovie">
                         <FindContentView></FindContentView>
                     </ModalView>
-                    <button id="search-button" @click="isModalViewed=true">핸드폰번호조회</button>
-                </div>
+                    -->
 
+                    <!-- 예매 내역 조회 창 -->
+                    <form action="" method="" enctype="multipart/form-data">
+                        <div class="m-body">
+                            <div id="result">
+                                <table id="result-table">
+                                    <thead>
+                                        <tr>
+                                            <th>예약번호</th>
+                                            <th>영화 제목</th>
+                                            <th>상영일자</th>
+                                            <th>상영시간</th>
+                                            <th>상영관</th>
+                                            <th>좌석번호</th>
+                                            <th>영화가격</th>
+                                            <th>구매자이름</th>
+                                            <th>포인트</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-bind:key="i" v-for="(userVo, i) in reservationList"
+                                            @click="openModal(userVo.m_r_no)">
+                                            <!--@click="openModal(userVo)-->
+                                            <td>{{ userVo.m_r_no }}</td>
+                                            <td>{{ userVo.m_name }}</td>
+                                            <td>{{ userVo.m_r_date }}</td>
+                                            <td>15:00 ~ 17:14</td>
+                                            <!--<td>{{ userVo.s_date }}</td>-->
+                                            <td>1관</td>
+                                            <td>D4 , D5</td>
+                                            <!--<td>{{ userVo.m_s_no }}</td>-->
+                                            <td>{{ userVo.m_price }}</td>
+                                            <td>{{ userVo.user_name }}</td>
+                                            <td>{{ userVo.user_point }} </td>
+                                            <!-- <td @click="openModal(userVo)">{{ userVo.m_r_no }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.m_name }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.m_r_date }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.s_date }}</td>
+                                            <td @click="openModal(userVo)">1관</td>
+                                            <td @click="openModal(userVo)">{{ userVo.m_s_no }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.m_price }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.user_name }}</td>
+                                            <td @click="openModal(userVo)">{{ userVo.user_point }}</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- //isModalViewed -->
+
+
+
+                <div id="input-container">
+                    <input type="text" v-model="phoneNumber" placeholder="01000000000">
+                    <button id="search-button" @click="getList">핸드폰번호조회</button>
+
+                </div>
                 <div class="dial-container">
                     <div class="dial-button" @click="appendNumber(1)">1</div>
                     <div class="dial-button" @click="appendNumber(2)">2</div>
@@ -31,82 +91,122 @@
                     <div class="dial-button" @click="deleteLastDigit">지움</div>
                     <div class="dial-button" @click="clearPhoneNumberMethod">전체삭제</div>
                 </div>
-
                 <div>
                     <router-link to="/" id="return-button">돌아가기</router-link>
                 </div>
             </div>
-            <AppFooter />
+           
         </div>
+
     </div>
+
+
+
+
 </template>
 
 <script>
 import "@/assets/css/FindView.css";
-import AppHeader from "@/components/AppHeader.vue"
-import AppFooter from "@/components/AppFooter.vue"
-import ModalView from "@/components/ModalView.vue";
+import AppHeader from "@/components/AppHeader.vue";
+
 import FindContentView from "@/components/FindContentView.vue";
+import ModalView from "@/components/ModalView.vue";
 import axios from 'axios';
 
 export default {
     name: "FindView",
     components: {
         AppHeader,
-        AppFooter,
-        ModalView,
         FindContentView,
+        ModalView,
     },
     data() {
         return {
+            phoneNumber: '010',
+            reservationList: [],
+            reservationOnOff: false,
+            
+            click_m_r_no: "",  //리스트에서 선택한 예약번호
+
+
+            
             isModalViewed: false,
-            phoneNumber: '',
-            dateInput: '',
-            reservationNumber: '',
+           
         };
+
+
     },
     methods: {
-        getList() {
-            console.log("데이터 가져오기");
+        openModal(m_r_no) {
+            console.log("모달");
+            this.click_m_r_no = m_r_no;
 
+
+            this.isModalViewed = true; // 모달 창을 열기 위해 true로 설정
+
+
+           
+           
+        },
+
+        openReservationList() {
+            //this.isModalViewed = true;
             axios({
-                method: 'get', // put, post, delete                   
+                method: 'get',
                 url: 'http://localhost:9000/api/movie',
-                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                //params: guestbookVo, //get방식 파라미터로 값이 전달
-                //data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                params: { phoneNumber: this.phoneNumber },
+                responseType: 'json'
 
-                responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response); //수신데이타
+                console.log(response);
+                console.log(response.data);
+                this.reservationList = response.data.apiData;
 
             }).catch(error => {
                 console.log(error);
             });
         },
+
+        getList() {
+            console.log("getList()");
+            //this.isModalViewed = false;
+            axios({
+                method: 'get',
+                url: 'http://localhost:9000/api/movie',
+                params: { phoneNumber: this.phoneNumber },
+                responseType: 'json'
+
+            }).then(response => {
+                console.log(response);
+                console.log(response.data);
+                this.reservationList = response.data.apiData;
+                this.reservationOnOff = true;
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+        },
+
         appendNumber(num) {
             if (this.phoneNumber.length < 11) {
                 this.phoneNumber += num;
-            } else if (this.dateInput.length < 8) {
-                this.dateInput += num;
             }
         },
+
         deleteLastDigit() {
-            if (this.dateInput.length > 0) {
-                this.dateInput = this.dateInput.slice(0, -1);
-            } else if (this.phoneNumber.length > 0) {
+            if (this.phoneNumber.length > 0) {
                 this.phoneNumber = this.phoneNumber.slice(0, -1);
             }
         },
+
         clearPhoneNumberMethod() {
-            this.phoneNumber = ''; // 휴대폰 번호를 초기화합니다.
+            this.phoneNumber = '';
         },
     },
     created() {
-        // 컴포넌트가 생성될 때 데이터를 가져오도록 설정
-        this.getList();
+
+        //this.getList(); // 핸드폰 번호 조회를 버튼 클릭 시에만 수행되도록 제거
     }
 };
 </script>
-
-<style></style>

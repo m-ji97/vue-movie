@@ -6,14 +6,14 @@
         <div class="ticket">
           <div v-if="recList.length > 0">
             <div class="order-number"> 주문 <br> 번호</div>
-            <div class="number"> {{ recList[0].m_r_no }} </div>
+            <div class="number"> {{ recList[0].f_r_no }} </div>
             <div class="money">
               [결제 내역]<br>
             </div>
-            <div v-for="item in recList" :key="item.m_p_no" class="moneyList">
-              {{ item.m_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.m_s_no }}개
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.m_count * item.m_price }}원
+            <div v-for="item in recList" :key="item.f_p_no" class="moneyList">
+              {{ item.f_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.f_count }}개
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.f_count * item.f_price }}원
             </div>
             <div class="point">
               {{ recList[0].user_name }} 님!
@@ -23,7 +23,7 @@
             <div class="barcode-wrapper">
               <img src="../assets/qrimages.png" class="barcode">
             </div>
-            <div class="home">
+            <div>
               <router-link to="/" id="return-button">돌아가기</router-link>
             </div>
           </div>
@@ -43,10 +43,10 @@ import axios from 'axios';
 import "@/assets/css/PaymentContent2View.css";
 
 export default {
-  name: "ContentView",
+  name: "PaymentContent2View",
   components: {},
   props: {
-    m_r_no: Number
+    f_r_no: Number
   },
   data() {
     return {
@@ -61,10 +61,10 @@ export default {
     getList() {
       axios({
         method: 'get',
-        url: 'http://localhost:9000/api/movie/rec',
+        url: 'http://localhost:9000/api/food/rec',
         headers: { "Content-Type": "application/json; charset=utf-8" },
         params: {
-          m_r_no: this.m_r_no
+          f_r_no: this.f_r_no
         },
         responseType: 'json'
       }).then(response => {
@@ -78,7 +78,7 @@ export default {
   },
   created() {
     console.log("------------------------");
-    console.log(this.m_r_no);
+    console.log(this.f_r_no);
 
     this.getList();
   }

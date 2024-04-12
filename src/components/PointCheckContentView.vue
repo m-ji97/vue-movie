@@ -1,83 +1,107 @@
 <template>
-  <div class="content">
-    <!-- 이미지등록 팝업(모달)창 -->
-    <form action="" method="" enctype="multipart/form-data">
+    <div class="content">
+        <!-- 이미지등록 팝업(모달)창 -->
+        <form action="" method="" enctype="multipart/form-data">
 
-        <div id="closeBtn" class="closeBtn">×</div>
+            <div id="closeBtn" class="closeBtn">×</div>
 
-        <div class="m-header">예매 조회</div>
-        
-        <div class="m-body">
+            <div class="m-header"></div>
+
+            <div class="m-body">
+                <div id="pointuse" action="" method="">
+                    <h1>포인트 사용</h1>
+                    <div class="point-info">
+                        <p class="total-price">총 금액: {{ $store.state.totalMoviePrice }}원</p>
+                        <p class="total-price">사용가능포인트: {{ $store.state.usePoint }}원</p>
+                        <p class="total-price">사용포인트: <input type="text" v-model="money" placeholder=""> p</p>
+                        <p class="total-price">총 금액: {{ $store.state.totalMoviePrice }}원</p>
+
+                        <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
+                            <PointUseContentView></PointUseContentView>
+                        </ModalView>
+                    </div>
+                    <div class="dial-container">
+                        <div class="dial-button" @click="appendNumber(1)">1</div>
+                        <div class="dial-button" @click="appendNumber(2)">2</div>
+                        <div class="dial-button" @click="appendNumber(3)">3</div>
+                        <br>
+                        <div class="dial-button" @click="appendNumber(4)">4</div>
+                        <div class="dial-button" @click="appendNumber(5)">5</div>
+                        <div class="dial-button" @click="appendNumber(6)">6</div>
+                        <br>
+                        <div class="dial-button" @click="appendNumber(7)">7</div>
+                        <div class="dial-button" @click="appendNumber(8)">8</div>
+                        <div class="dial-button" @click="appendNumber(9)">9</div>
+                        <br>
+                        <div class="dial-button" @click="appendNumber(0)">0</div>
+                        <div class="dial-button" @click="deleteLastDigit">지움</div>
+                        <div class="dial-button" @click="clearPhoneNumberMethod">전체삭제</div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <ModalView v-if="isModalViewed" @close-modal="isModalViewed = false">
+                            <PointUseContent2View></PointUseContent2View>
+                        </ModalView>
+
+                        
+
+                        <router-link to="/ticket/paymentform05">
+                            <div class="point-method" @click="calculateTotalMoviePrice">
+                                적용하기</div>
+                        </router-link>
 
 
+                    </div>
+                    <input type="hidden" name="payment_method" id="paymentMethod">
+                    <input type="submit" value="결제">
+                </div>
+            </div>
 
-          <div id="result">
-            <table id="result-table">
-                <thead>
-                    <tr>
-                        <th>예약번호</th>
-                        <th>영화 제목</th>
-                        <th>상영일시</th>
-                        <th>상영관</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ reservationNumber }}</td>
-                        <td>어벤져스: 엔드게임</td>
-                        <td>2024년 1월 1일 18:00</td>
-                        <td>1관</td>
-                    </tr>
-                    <!-- 기타 조회 결과 항목들 -->
-                </tbody>
-            </table>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-        <div class="m-footer">
-          <div class="button-container">
-              <router-link to="/" class="btn-home">홈으로 돌아가기</router-link>
-          </div>
-        </div>
-        
-    </form>
-  </div>
+        </form>
+    </div>
 </template>
 
 
 <script>
-import "@/assets/css/PaymentContentView.css";
+import "@/assets/css/PointUseView.css";
+import ModalView from "@/components/ModalView.vue";
+import PointUseContent2View from '@/components/PointUseContent2View.vue';
 
 
 export default {
-    name: "ContentView",
-    components: {},
+    name: "PointCheckContent2View",
+    components: {
+        ModalView,
+        PointUseContent2View
+    },
     data() {
         return {
-        
+            isModalViewed: false,
+            money: 0
         };
     },
-    methods: {
-
+    computed: {
+        totalMoviePrice() {
+            return this.$store.state.totalMoviePrice;
+        }
     },
-    created() {
+    methods: {
+        calculateTotalMoviePrice() {
+            console.log("클릭");
+
+            let money = parseInt(this.money);
+
+            console.log(typeof this.money);
+            console.log(this.money);
+        
+            let pointEx = this.$store.state.usePoint - this.money;
+            this.$store.commit('setMoney', money);
+            this.$store.commit('setPointEx', pointEx);
+
+            this.isModalViewed = false;
+        }
+
+
     }
 };
 </script>
